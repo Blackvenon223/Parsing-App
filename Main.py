@@ -226,8 +226,8 @@ class MainWindow(QtWidgets.QWidget):
 		
 	def register_code(self,reg_mail):
 		code = random.randint(15678,93789)
-		addr_from = 'benjaminhlebnikov@yandex.ru'
-		password = 'dragon6587'    
+		addr_from = ''
+		password = ''    
 		addr_to = reg_mail
 		msg = MIMEMultipart()                              
 		msg['From']    = addr_from       
@@ -235,7 +235,7 @@ class MainWindow(QtWidgets.QWidget):
 		msg['Subject'] = 'Код подтверждения'
 		body = str(code)
 		msg.attach(MIMEText(body, 'plain'))  
-		server = smtplib.SMTP_SSL('smtp.yandex.ru', 465)  
+		server = smtplib.SMTP_SSL('smtp."Your mail provider example: yandex.ru"', 465)  
 		server.ehlo()
 		server.login(addr_from, password)  
 		server.send_message(msg)                 
@@ -291,7 +291,6 @@ class FileChooseDialog(QtWidgets.QWidget):
 if __name__ == "__main__":
 	import sys
 	app = QtWidgets.QApplication(sys.argv)
-	app.setStyleSheet(open("styles.qss","r").read())
 	window = MainWindow()
 	window.setWindowTitle("ультра парсер")
 	window.setLayout(window.vbox)
